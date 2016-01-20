@@ -15,7 +15,7 @@ before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   # GET /tasks/new
   def new
-  	@project = Project.find(params[:id])
+  	@project = Project.find(params[:project_id])
     @task = Task.new
   end
 
