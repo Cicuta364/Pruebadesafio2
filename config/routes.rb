@@ -1,19 +1,9 @@
 Rails.application.routes.draw do
-  get 'task/index'
 
-  get 'task/show'
 
-  get 'task/new'
-
-  get 'task/create'
-
-  get 'task/edit'
-
-  get 'task/update'
-
-  get 'task/destroy'
-
-  resources :projects
+  resources :projects do
+    resources :tasks
+  end
 
    devise_for :users, controllers: {
      sessions: 'users/sessions',
@@ -30,6 +20,5 @@ Rails.application.routes.draw do
      end
    end
 
-  get 'pages/index'
   root 'pages#index'
 end

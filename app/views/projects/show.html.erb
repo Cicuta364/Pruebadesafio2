@@ -5,5 +5,11 @@
   <%= @project.name %>
 </p>
 
+<!-- <p>
+  <strong>Pending Task:</strong>
+  <%#= @project.tasks.pending_task %>
+</p> -->
+
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
+<%= link_to 'New Task', new_project_task_path %>

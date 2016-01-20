@@ -10,6 +10,7 @@ before_action :set_project, only: [:show, :edit, :update, :destroy]
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @tasks = @project.tasks
   end
 
   # GET /projects/new
@@ -24,7 +25,7 @@ before_action :set_project, only: [:show, :edit, :update, :destroy]
   # POST /projects
   # POST /projects.json
   def create
-    @project = Project.new(ot_params)
+    @project = Project.new(project_params)
 
     respond_to do |format|
       if @project.save
@@ -41,7 +42,7 @@ before_action :set_project, only: [:show, :edit, :update, :destroy]
   # PATCH/PUT /projects/1.json
   def update
     respond_to do |format|
-      if @project.update(ot_params)
+      if @project.update(project_params)
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
       else
@@ -63,13 +64,12 @@ before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_ot
+    def set_project
       @project = Project.find(params[:id])
     end
-  private
 
     def project_params
-      params.require(:project).permit(:name)
+      params.require(:project).permit(:name, :user_id, :task_id)
     end
 end
 
